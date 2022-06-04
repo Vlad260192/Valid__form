@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Valid form</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form">
+            <form action="#" id="form" class="form__body">
+                <h1 class="form__title">Відправка данних на почту</h1>
+                <div class="form__item">
+                    <label for="formName" class="form__label">Імʼя:</label>
+                    <input id="formName" type="text" name="name" class="form__input _req">
+                </div>
+                <div class="form__item">
+                    <label for="formEmail" class="form__label">E-mail:</label>
+                    <input id="formEmail" type="text" name="email" class="form__input _req _email">
+                </div>
+                <div class="form__item">
+                    <div class="form__label">Лівша чи правша?</div>
+                    <div class="options">
+                        <div class="options__item">
+                            <input type="radio" name="hand" checked id="formRightHanded" value="right" class="options__input">
+                            <label for="formRightHanded" class="options__label"><span>Правша</span></label>
+                        </div>
+                        <div class="options__item">
+                            <input type="radio" name="hand" id="formLeftHanded" value="left" class="options__input">
+                            <label for="formLeftHanded" class="options__label"><span>Лівша</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__item">
+                    <label for="formMessage" class="form__label">Оголошення:</label>
+                    <textarea name="message" id="formMessage" class="form__input"></textarea>
+                </div>
+                <div class="form__item">
+                    <div class="form__label">Вік:</div>
+                    <select name="age" id="" class="select wide">
+                        <option data-display="select">Нічого</option>
+                        <option value="from 18 to 25" selected="selected">Молодий</option>
+                        <option value="from 25 to 45">Старий</option>
+                        <option value="from 45">Суперстар</option>
+                    </select>
+                </div>
+                <div class="form__item">
+                    <div class="form__label">Прикрипіть фото</div>
+                    <div class="file">
+                        <div class="file__item">
+                            <input id="formImage" accept=".jpg, .png, .gif" type="file" name="image" class="file__input">
+                            <div class="file__button">Вибрати</div>
+                        </div>
+                        <div class="file__preview"></div>
+                    </div>
+                </div>
+                <div class="form__item">
+                    <div class="checkbox">
+                        <input id="formAgreement" checked type="checkbox" name="agreement" class="checkbox__input _req">
+                        <label for="formAgreement" class="checkbox__label"><span>Я даю свою згоду на обробку персональних данних у звʼязку з <a href="#">умовами</a></span></label>
+                    </div>
+                </div>
+                <button type="submit" class="form__button">Відправити</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
