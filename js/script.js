@@ -13,9 +13,26 @@ document.addEventListener('DOMContentLoaded',function() {
 
         let error = formValidate(form);
 
-        if (error===0) {
+        let formData = new FormData(form);
+        formData.append('image', formImage.files[0]);
 
-        }else{
+        if (error === 0) {
+            form.classList.add('_sending');
+            let response = await fetch('sendmail.php', {
+                method: 'POST',
+                body: formData
+            });
+            if (response.ok) {
+                let result = await response.json();
+                alert(result.message);
+                formPreview.innerHTML = '';
+                form.reset();
+                form.classList.remove('_sending');
+            } else {
+                alert('Помилка');
+                form.classList.remove('_sending');
+            }
+        } else {
             alert('Заповніть обовʼязкові поля');
         }
     }
@@ -63,4 +80,32 @@ document.addEventListener('DOMContentLoaded',function() {
     const formImage = document.getElementById('formImage');
     // Отримуємо div для preview в змінну
     const formPreview = document.getElementById('formPreview');
+
+    // Слухаємо зміни в input файлу
+    formImage.addEventListener('change', () =>{
+        uploadFile(formImage.files[0]);
+    });
+
+    function uploadFile(file) {
+        // Перевіряємо тип файлу
+        if (!['image/jpeg', 'image/png', 'image/gif'].includes(file.type)) {
+            alert('Дозволені тільки зображення.');
+            formImage.value = '';
+            return;
+        }
+        // Перевіряємо розмір файлу (<2МБ)
+        if(file.size > 2 * 1024 * 1024) {
+            alert('Файл повинен бути меншим за 2 МБ.');
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            formPreview.innerHTML = `<img src="${e.target.result}" alt="Фото">`;
+        };
+        reader.onerror = function (e) {
+            alert('Помилка');
+        };
+        reader.readAsDataURL(file);
+    }
 });
